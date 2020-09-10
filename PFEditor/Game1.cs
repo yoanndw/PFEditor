@@ -70,7 +70,7 @@ namespace PFEditor
             spriteBatch = new SpriteBatch(GraphicsDevice);
             this.sh = new ShapesDrawingManager(graphics.GraphicsDevice, spriteBatch);
 
-            this.ChangeScene(SceneTrans.Title);
+            this.ChangeScene(SceneTrans.Game);
         }
 
         protected override void UnloadContent()

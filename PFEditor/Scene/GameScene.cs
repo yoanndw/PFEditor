@@ -14,11 +14,17 @@ namespace PFEditor.Scene
 {
     public class GameScene : BaseScene
     {
+        private Level level;
        
         public GameScene(Game1 game, Dictionary<string, string> properties, Random rng)
             : base(game, properties)
         {
-            
+            Texture2D[] tiles =
+            {
+                game.Content.Load<Texture2D>("block"),
+            };
+
+            this.level = new Level(tiles);
         }
 
         public override void Update(GameTime gameTime, Input input)
@@ -30,6 +36,7 @@ namespace PFEditor.Scene
         public override void Draw(SpriteBatch spriteBatch, ShapesDrawingManager sh)
         {
             base.Draw(spriteBatch, sh);
+            this.level.Draw(spriteBatch);
         }
     }
 }
