@@ -1,0 +1,4 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"D:/Code/C#/PFEditor/PFEditor/Content/block.png","D:/Code/C#/PFEditor/PFEditor/Content/bin/DesktopGL/block.xnb","TextureProcessor","Texture2DContent",102,4181,0,4223437
+"D:/Code/C#/PFEditor/PFEditor/Content/end.png","D:/Code/C#/PFEditor/PFEditor/Content/bin/DesktopGL/end.xnb","TextureProcessor","Texture2DContent",99,4181,0,0120012
+"D:/Code/C#/PFEditor/PFEditor/Content/start.png","D:/Code/C#/PFEditor/PFEditor/Content/bin/DesktopGL/start.xnb","TextureProcessor","Texture2DContent",99,4181,0,0119993
