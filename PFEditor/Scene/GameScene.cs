@@ -15,6 +15,7 @@ namespace PFEditor.Scene
     public class GameScene : BaseScene
     {
         private Level level;
+        private Player player;
        
         public GameScene(Game1 game, Dictionary<string, string> properties, Random rng)
             : base(game, properties)
@@ -25,6 +26,7 @@ namespace PFEditor.Scene
             };
 
             this.level = new Level(tiles);
+            this.player = new Player(content, new Point(1, 8));
         }
 
         public override void Update(GameTime gameTime, Input input)
@@ -36,7 +38,9 @@ namespace PFEditor.Scene
         public override void Draw(SpriteBatch spriteBatch, ShapesDrawingManager sh)
         {
             base.Draw(spriteBatch, sh);
+
             this.level.Draw(spriteBatch);
+            this.player.Draw(spriteBatch);
         }
     }
 }
