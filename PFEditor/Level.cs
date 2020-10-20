@@ -53,7 +53,7 @@ namespace PFEditor
             return new Vector2(screenX, screenY);
         }
 
-        public static Vector2 ScreenToGrid(Point gridPos)
+        public static Vector2 GridToScreen(Point gridPos)
         {
             return GridToScreen(gridPos.X, gridPos.Y);
         }
