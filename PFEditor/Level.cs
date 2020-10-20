@@ -32,20 +32,45 @@ namespace PFEditor
             };
         }
 
+        public static Point ScreenToGrid(float screenX, float screenY)
+        {
+            int gridX = (int)(screenX / 32);
+            int gridY = (int)(screenY / 32);
+
+            return new Point(gridX, gridY);
+        }
+
+        public static Point ScreenToGrid(Vector2 screenPos)
+        {
+            return ScreenToGrid(screenPos.X, screenPos.Y);
+        }
+
+        public static Vector2 GridToScreen(int gridX, int gridY)
+        {
+            float screenX = gridX * 32;
+            float screenY = gridY * 32;
+
+            return new Vector2(screenX, screenY);
+        }
+
+        public static Vector2 ScreenToGrid(Point gridPos)
+        {
+            return GridToScreen(gridPos.X, gridPos.Y);
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 16; j++)
                 {
-                    int x = j * 32;
-                    int y = i * 32;
+                    Vector2 pos = GridToScreen(j, i);
                     int tile = this.data[i, j];
 
                     if (tile != 0)
                     {
                         var tex = this.tiles[tile - 1]; // `tiles` array start at 0
-                        spriteBatch.Draw(tex, new Vector2(x, y), Color.White);
+                        spriteBatch.Draw(tex, pos, Color.White);
                     }
                 }
             }
