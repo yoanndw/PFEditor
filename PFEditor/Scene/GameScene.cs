@@ -32,6 +32,8 @@ namespace PFEditor.Scene
         public override void Update(GameTime gameTime, Input input)
         {
             base.Update(gameTime, input);
+
+            this.player.Update(gameTime, input);
         }
 
        
