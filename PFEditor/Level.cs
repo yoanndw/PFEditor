@@ -32,6 +32,24 @@ namespace PFEditor
             };
         }
 
+        public bool IsWall(int gridX, int gridY)
+        {
+            int width = this.data.GetLength(1);
+            int height = this.data.GetLength(0);
+
+            if (gridX < 0 || gridX >= width)
+                return true;
+            if (gridY < 0 || gridY >= height)
+                return true;
+
+            return this.data[gridY, gridX] == 1;
+        }
+
+        public bool IsWall(Point gridPos)
+        {
+            return this.IsWall(gridPos.X, gridPos.Y);
+        }
+
         public static int ScreenToGrid(float screenPos)
         {
             return (int)Math.Floor(screenPos / 32f);
