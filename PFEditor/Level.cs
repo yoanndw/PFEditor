@@ -32,10 +32,15 @@ namespace PFEditor
             };
         }
 
+        public static int ScreenToGrid(float screenPos)
+        {
+            return (int)Math.Floor(screenPos / 32f);
+        }
+
         public static Point ScreenToGrid(float screenX, float screenY)
         {
-            int gridX = (int)(screenX / 32);
-            int gridY = (int)(screenY / 32);
+            int gridX = ScreenToGrid(screenX);
+            int gridY = ScreenToGrid(screenY);
 
             return new Point(gridX, gridY);
         }
@@ -45,10 +50,15 @@ namespace PFEditor
             return ScreenToGrid(screenPos.X, screenPos.Y);
         }
 
+        public static float GridToScreen(int gridPos)
+        {
+            return gridPos * 32;
+        }
+
         public static Vector2 GridToScreen(int gridX, int gridY)
         {
-            float screenX = gridX * 32;
-            float screenY = gridY * 32;
+            float screenX = GridToScreen(gridX);
+            float screenY = GridToScreen(gridY);
 
             return new Vector2(screenX, screenY);
         }
