@@ -33,7 +33,7 @@ namespace PFEditor.Scene
         {
             base.Update(gameTime, input);
 
-            this.player.Update(gameTime, input);
+            this.player.Update(gameTime, input, this.level);
         }
 
        

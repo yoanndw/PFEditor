@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using CustomLib;
+using System.Diagnostics;
 
 namespace PFEditor
 {
@@ -32,6 +33,47 @@ namespace PFEditor
         {
         }
 
+        public bool CollideSingleAxis(Level level, float vx, float vy)
+        {
+            int leftGridX = Level.ScreenToGrid(this.pos.X);
+            int upGridY = Level.ScreenToGrid(this.pos.Y);
+
+            int rightGridX = Level.ScreenToGrid(this.pos.X + (32 - 1));
+            int downGridY = Level.ScreenToGrid(this.pos.Y + (32 - 1));
+
+            // Left
+            if (vx < 0)
+            {
+                return level.IsWall(leftGridX, upGridY)
+                       || level.IsWall(leftGridX, downGridY);
+            }
+            // Right
+            else if (vx > 0)
+            {
+                return level.IsWall(rightGridX, upGridY)
+                       || level.IsWall(rightGridX, downGridY);
+            }
+            // Up
+            else if (vy < 0)
+            {
+                return level.IsWall(leftGridX, upGridY)
+                       || level.IsWall(rightGridX, upGridY);
+            }
+            // Down
+            else if (vy > 0)
+            {
+                return level.IsWall(leftGridX, downGridY)
+                       || level.IsWall(rightGridX, downGridY);
+            }
+
+            return false;
+        }
+
+        public bool CollideSingleAxis(Level level, Vector2 velocity)
+        {
+            return this.CollideSingleAxis(level, velocity.X, velocity.Y);
+        }
+
         public void Move(Vector2 velocity) 
         {
             this.velocity = velocity;
@@ -42,7 +84,7 @@ namespace PFEditor
             this.Move(new Vector2(vx, vy));
         }
 
-        public void Update(GameTime gameTime, Input input)
+        public void Update(GameTime gameTime, Input input, Level level)
         {
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
             this.pos += this.velocity * dt;
@@ -50,10 +92,12 @@ namespace PFEditor
             if (input.KeyDown(Keys.Left))
             {
                 this.Move(-SPEED, 0);
+                Debug.WriteLine(this.CollideSingleAxis(level, this.velocity));
             }
             else if (input.KeyDown(Keys.Right))
             {
                 this.Move(SPEED, 0);
+                Debug.WriteLine(this.CollideSingleAxis(level, this.velocity));
             }
             else
             {

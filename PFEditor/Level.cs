@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace PFEditor
 {
-    class Level
+    public class Level
     {
         private Texture2D[] tiles;
         private int[,] data;
